@@ -1,0 +1,80 @@
+name: Rerender PDFs
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+  workflow_dispatch:
+
+jobs:
+  render_merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+
+      - run: sudo apt-get update
+
+      - name: install svg to png
+        run: sudo apt-get install librsvg2-bin
+
+      - name: install texlive
+        run: sudo apt-get install texlive-lang-german
+
+      - name: install texlive science
+        run: sudo apt-get install texlive-science
+
+      - name: install pandoc
+        run: sudo apt-get install pandoc
+
+      - name: create docs folder if not exists
+        run: mkdir -p docs
+
+      - name: run render.sh
+        run: |
+          pandoc -V documentclass=report -V classoption=oneside -V geometry:vmargin=14.5mm -V lang:de --fail-if-warnings --output=docs/merge.pdf md/*.md
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: merge.pdf
+          path: docs/merge.pdf
+
+  push_merged_pdfs:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: [render_merge]
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: delete old pdfs if exists
+        run: rm -f docs/*.pdf
+
+      - uses: actions/download-artifact@master
+        with:
+          name: slides.pdf
+          path: docs
+
+      - uses: actions/download-artifact@master
+        with:
+          name: summary.pdf
+          path: docs
+
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/*.pdf -f
+          git commit -m "Update PDFs"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
