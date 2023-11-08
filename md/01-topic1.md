@@ -1,4 +1,4 @@
-# Topic 1
+# Lecture 1: Simple Regression
 
 ## Title 1
 
