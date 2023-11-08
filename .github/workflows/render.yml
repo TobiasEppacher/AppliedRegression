@@ -58,12 +58,7 @@ jobs:
 
       - uses: actions/download-artifact@master
         with:
-          name: slides.pdf
-          path: docs
-
-      - uses: actions/download-artifact@master
-        with:
-          name: summary.pdf
+          name: merge.pdf
           path: docs
 
       - name: Commit files
