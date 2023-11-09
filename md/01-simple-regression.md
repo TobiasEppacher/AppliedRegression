@@ -75,3 +75,71 @@ $$
 $$
 
 $\sigma^2$ can then be substituted by $s^2$ to get the estimated variance of $\hat{\beta_0}$ and $\hat{\beta_1}$.
+
+## T-tests
+
+We want to test for $H_0: \beta_1 = 0$. This hypothesis states that the covariate has no effect on the outcome. 
+
+Under this hypothesis it holds that
+
+$$
+T = \frac{\hat{\beta_1}}{\sqrt{var(\hat{\beta_1})}} = \frac{\hat{\beta_1}}{se(\hat{\beta_1})} \sim t_{n-2}
+$$
+
+For a given significance level $\alpha$ we can then reject the null hypothesis if $|T| > t_{n-2, 1-\frac{\alpha}{2}}$, where $t_{n-2, 1-\frac{\alpha}{2}}$ is the $1-\frac{\alpha}{2}$ quantile of the $t_{n-2}$ distribution.
+
+Another approach is to calculate the probability of a result as or more extreme than the observed and reject the null hypothesis if $p < \alpha$.
+For a two-sided test this probability is given by $2 \cdot (1- P(t < |T|)), t \sim t_{n-2}$.
+
+## Confidence intervals
+
+The confidence interval for $\beta_1$ (with accuracy $1-\alpha$) is given by 
+
+$$
+\hat{\beta_1} \pm t_{n-2, 1-\frac{\alpha}{2}} \cdot se(\hat{\beta_1})
+$$
+
+Since this is a random function ($\hat{\beta_1}$ is a random variable) the confidence interval is random as well. Hence the interval covers the true value of $\beta_1$ with probability $1-\alpha$.
+
+## Prediction of values
+
+Given a fixed value $x$ we want to predict the value of $y$ at this point. The mean of the distribution of $y$ is given by:
+
+$$
+E(y) = E(\beta_0 + \beta_1 x + \epsilon) = E(\beta_0 + \beta_1 x) + E(\epsilon) = \beta_0 + \beta_1 x + 0
+$$
+
+We can substitue $\beta_0$ and $\beta_1$ by their estimators $\hat{\beta_0}$ and $\hat{\beta_1}$ to obtain the estimated mean.
+
+$$
+\hat{\beta_0} + \hat{\beta_1} x = \bar{y} - \hat{\beta_1} \bar{x} + \hat{\beta_1} x = \bar{y} + \hat{\beta_1} (x - \bar{x})
+$$
+
+We assume that $\bar{y}$ is independent of $\hat{\beta_1}$ and can derive that
+
+$$
+\begin{aligned}
+Var(\hat{\beta_0} + \hat{\beta_1} x) &= Var(\bar{y}) + (x - \bar{x})^2 Var(\hat{\beta_1}) \\
+&= \frac{\sigma^2}{n} + (x - \bar{x})^2 \frac{\sigma^2}{\sum_{i=1}^n \left( x_i - \bar{x} \right)^2} \\
+&= \sigma^2 \left( \frac{1}{n} + \frac{(x - \bar{x})^2}{\sum_{i=1}^n \left( x_i - \bar{x} \right)^2} \right)
+\end{aligned}
+$$
+
+This is the variance of the distribution of $y$ at $x$. Since the second term increases with the distance of $x$ from $\bar{x}$, the variance increases as well. This means, that the prediction is more uncertain the further away $x$ is from $\bar{x}$.
+
+## Analysis of Variance (ANOVA)
+
+We now want to derive, how much of the variability of $y$ is explained by the model and how much is left unexplained. The total variability is given by
+
+$$
+\sum_{i=1}^n \left( y_i - \bar{y} \right)^2
+$$
+
+but it can be directly decomposed into the variability due to regression and the residual variability (proof on the slides).
+
+$$
+\sum_{i=1}^n \left( y_i - \bar{y} \right)^2 = \sum_{i=1}^n \left( \hat{y}_i - \bar{y} \right)^2 + \sum_{i=1}^n \left( y_i - \hat{y}_i \right)^2
+$$
+
+![ANOVA table](images/ANOVA-table.png)
+

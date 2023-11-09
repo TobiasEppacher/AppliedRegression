@@ -6,6 +6,7 @@
 ## About
 
 This repository contains the lecture notes for the course Applied Regression at the Technical University of Munich during the winter semester 2023/24.
+The notes are strongly based on the lecture slides by Prof. Donna Ankerst (TUM) and contain single screenshots for easier understanding.
 
 You can download the merged file at [merge.pdf](https://github.com/TobiasEppacher/AppliedRegression/merge.pdf)
 
