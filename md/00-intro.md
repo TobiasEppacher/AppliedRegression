@@ -1,10 +1,11 @@
 ---
-title: Applied Regression
-subtitle: Lecture Notes
+title: TUM Applied Regression WS 2023/24
+subtitle: Notes based on the lecture of Donna Ankerst Ph.D.
 toc: true
 date: >-
   Zuletzt aktualisiert: \today
 urlcolor: blue
+keywords: [statistics, regression, applied regression, model diagnostics]
 include-before: |
   [![Merge & Render PDF](https://github.com/TobiasEppacher/AppliedRegression/actions/workflows/render.yml/badge.svg)](https://github.com/TobiasEppacher/AppliedRegression/actions/workflows/render.yml)
   [![Deploy static content to Pages](https://github.com/TobiasEppacher/AppliedRegression/actions/workflows/static.yml/badge.svg)](https://github.com/TobiasEppacher/AppliedRegression/actions/workflows/static.yml)
