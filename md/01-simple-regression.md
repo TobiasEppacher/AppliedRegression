@@ -253,7 +253,7 @@ $$
 
 The value $R^2$ can lies between 0 and 1 and can be interpreted as the percentage of the variation explained by changes in the covariate $x$.
 
-It measures broadly spread out the data is around the fitted line. If the data is very close to the fitted line, then $R^2$ is close to 1. If the data is very far away from the fitted line, then $R^2$ is close to 0.
+It measures how broadly the data is spread around the fitted line. If the data is very close to the fitted line, then $R^2$ is close to 1. If the data is very far away from the fitted line, then $R^2$ is close to 0.
 
 ### Pearson's correlation coefficient
 

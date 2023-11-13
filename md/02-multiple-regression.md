@@ -57,7 +57,7 @@ where $\mu$ is the mean of the random vector. The variance matrix is defined as:
 $$
 \begin{aligned}
 \Sigma = Var(V) &= E((V - \mu)(V - \mu)^T) \\
-      &= E \begin{pmatrix}
+      &= \begin{pmatrix}
         E[(X_1 - \mu_1)^2] & E[(X_1 - \mu_1)(X_2 - \mu_2)] & \dots & E[(X_1 - \mu_1)(X_n - \mu_n)] \\
         E[(X_2 - \mu_2)(X_1 - \mu_1)] & E[(X_2 - \mu_2)^2] & \dots & E[(X_2 - \mu_2)(X_n - \mu_n)] \\
         \vdots & \vdots & \ddots & \vdots \\
@@ -70,7 +70,7 @@ The matrix $\Sigma$ is symmetric and positive semi-definite. The diagonal elemen
 
 #### Properties of random objects
 
-Let $A$ be a vonstant matrix and $y$ a random vector. Then $Ay$ is also a random vector and:
+Let $A$ be a constant matrix and $y$ a random vector. Then $Ay$ is also a random vector and:
 
 + $E(Ay) = AE(y)$
 + $Var(Ay) = AVar(y)A^T$
