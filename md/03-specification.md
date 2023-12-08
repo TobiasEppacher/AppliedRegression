@@ -27,6 +27,10 @@ where $x_{i1} = \begin{cases} 1 & \text{for } i = 1, \ldots, m \\ 0 & \text{for 
 
 In Matrix form the model is $y = X\beta + \epsilon$ where $X = \begin{bmatrix} 1 & 0 \\ \vdots & \vdots \\ 1 & 0 \\ 0 & 1 \\ \vdots & \vdots \\ 0 & 1 \end{bmatrix}$ and $\beta = \begin{bmatrix} \beta_1 \\ \beta_2 \end{bmatrix}$.
 
+When programmed in R, the model can be generated using `lm(y ~ x1 + x2 -1)`. The `-1` removes the intercept from the model since it is included by default. If the intercept is not removed, the program will crash since the lines are not linearly independent anymore (the sum of the two covariate columns equals the full 1 column of the intercept).
+
+Alternatively, instead of removing the intercept, one can simply use one of the indicators for that purpose. For example, `lm(y ~ x2)` will use the intercept as value for the factor of the first covariate. Using `lm(y ~ factor(x))` will even take care of the coding of the covariates automatically.
+
 ## Interactions
 
 An interaction happens when the effect of one variable affects the effect of another variable. For example, the effect of a drug may be different for different ages.
