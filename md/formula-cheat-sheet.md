@@ -122,3 +122,46 @@ Let $\mathbf{X}, \mathbf{Y}$ be random vectors and $\mathbf{A}, \mathbf{B}$ be m
 + $SS_{residual} = \mathbf{y}^T\mathbf{y} - \mathbf{\beta}^T\mathbf{X}^T \mathbf{X} \mathbf{\beta}$
 + $SS_{regression} = \mathbf{\beta}^T\mathbf{X}^T \mathbf{X} \mathbf{\beta} - n\bar{y}^2$
 + $SS_{total} = SS_{regression} + SS_{residual}$
+
+## Model Diagnostics
+
+### Standardized and Studentized residuals
+
++ Standardized residuals: $e^s_i = \frac{e_i}{s}$
++ Studentized residuals: $d_i = \frac{e_i}{s\sqrt{1-h_{ii}}}$
+
+### Autocorrelation
+
+$$
+    r_k = \frac{\sum_{t=k+1}^{n} e_te_{t-k}}{\sum_{t=1}^{n} e_t^2}, \quad k = 1, 2, \ldots
+$$
+
+$$
+    r_0 = 1, \quad E[r_k] = 0, \quad Var[r_k] = \frac{1}{n}
+$$
+
++ Residuals probably correlated if $|r_k| > 2 \sqrt{\frac{1}{n}}$ for any $k>0$.
+
+### Dubin-Watson Test Statistic
+
+$$
+    DW = \frac{\sum_{t=2}^{n} (e_t - e_{t-1})^2}{\sum_{t=1}^{n} e_t^2} \approx 2(1-r_1)
+$$
+
++ Hints at correlation in residuals if deviates from 2.
++ If deviation happens, other tests should be used to confirm.
+
+### Cook's distance (influence measure)
+
+$$
+    D_i = (\hat\beta - \hat\beta_{(i)})' X'X (\hat\beta - \hat\beta_{(i)}) / [(k+1)s^2]
+$$
+
+or
+
+$$
+    D_i = \frac{h_{ii} d^2_i}{(1-h_{ii})(k+1)}, \quad d_i = \frac{e_i}{s\sqrt{1-h_{ii}}}
+$$
+
++ $D_i > 0.5$ : should be observed
++ $D_i > 1$ : great concern

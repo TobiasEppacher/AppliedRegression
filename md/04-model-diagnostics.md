@@ -2,7 +2,7 @@
 
 ## Residuals
 
-When the model is correctly specified, the residuals should identically distributed, according to a normal distribution around the mean 0 and with variance $\sigma^2$.
+When the model is correctly specified, the residuals should be identically distributed, according to a normal distribution around the mean 0 and with variance $\sigma^2$.
 
 ## Incorrectly Specified Model
 
@@ -63,7 +63,7 @@ Therefore it is strongly suggested to plot the residuals (or studentized residua
 
 In a simple model $y = X\beta + \epsilon$ the errors should be independent.
 
-For samples collected in some time order (e.g. stock prices one day after the other) the residuals may be correlated. The reason for this is, that a disturbance in the measured value may not only affect one, but multiple successive measurements. Therefore the residuals can be correlated.
+For samples collected in some time order (e.g. stock prices one day after the other) the residuals may be correlated. The reason for this is, that some event may not only affect one, but multiple successive measurements.
 
 ## Autocorrelation of Residuals
 
@@ -77,7 +77,7 @@ $r_0 = 1$ and $-1 \leq r_k \leq 1$ with $E[r_k] \approx 0$ and $Var(r_k) \approx
 
 When plotting the autocorrelation, the values $r_k$ for $k>0$ should stay within a band of $\pm 2/\sqrt{n}$. Values outside indicate autocorrelation.
 
-Also plots of $e_t$ vs. $e_{t-k}$ should show now pattern.
+Also plots of $e_t$ vs. $e_{t-k}$ should show no pattern.
 
 ## Dubin-Watson Test Statistic
 
@@ -85,9 +85,9 @@ $$
     DW = \frac{\sum_{t=2}^{n} (e_t - e_{t-1})^2}{\sum_{t=1}^{n} e_t^2} \approx 2(1-r_1)
 $$
 
-Under the null hypothesis that the residuals are not correlated, the test statistic is approximately $DW \approx 2$. Stronger deviations may indicate dependence between the errors.
+Under the null hypothesis that the residuals are not correlated, this test statistic is approximately $DW \approx 2$. Stronger deviations may indicate dependence between the errors.
 
-Note that this test should be only an informal check. If the data seems to be dependent, alternative time series methods must be used.
+Note that this test should only be an informal check. If the data seems to be dependent, alternative time series methods must be used.
 
 ## Influence and Leverage of Outliers
 
@@ -107,7 +107,7 @@ $h_{ii}$ is called the leverage of the $i$-th observation.
 - $\frac{1}{n} \leq h_{ii} \leq 1$
 - Leverage is higher for $x$ values far from the mean $\bar{x}$.
 - $\sum_{i=1}^{n} h_{ii} = tr[H] = k+1$
-- $\bar h = \frac{k+1}{n}$ and a cas is called high leverage if $h_{ii} > 2\bar{h}$
+- $\bar h = \frac{k+1}{n}$ and a case is called high leverage if $h_{ii} > 2\bar{h}$
 
 High leverage points can have a strong influence on the model, but don't have to.
 
