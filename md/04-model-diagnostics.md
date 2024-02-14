@@ -43,7 +43,7 @@ This means that the residuals cannot be assumed to be independent and don't have
 
 ## Standardized and Studentized Residuals
 
-It is possible to adjust the residuals to have *approximate* mean 0 and variance 1. Two methods are the so called standardized and studentized residuals.
+It is possible to adjust the residuals to have _approximate_ mean 0 and variance 1. Two methods are the so called standardized and studentized residuals.
 
 Using $s^2 = \frac{e'e}{n-k-1}$ as estimate for $\sigma^2$
 
@@ -93,7 +93,7 @@ Note that this test should only be an informal check. If the data seems to be de
 
 Outliers can have a strong influence on the model and should be analysed carefully.
 
-The fitted values $\hat{y}_i$ are weighted averages of its own response and the responses of the other observations. 
+The fitted values $\hat{y}_i$ are weighted averages of its own response and the responses of the other observations.
 
 $$
     \hat{y}_i = h_{ii} + \sum_{j \neq i} h_{ij}y_j

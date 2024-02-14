@@ -15,7 +15,7 @@ $$
     y_{ij} = \beta_1I(x_i = x_1) + \dots + \beta_kI(x_i = x_k) + \epsilon_{ij}, \quad \epsilon_{ij} \sim N(0, \sigma^2)
 $$
 
-It holds that: 
+It holds that:
 $$
     (\hat{\beta}_1, \dots, \hat{\beta}_k) = (\bar{y}_1, \dots, \bar{y}_k) \\
     SS_{residual} = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (y_{ij} - \bar{y}_i)^2 \\
@@ -66,6 +66,7 @@ Using the resulting value, arbitrary significance levels can be used to test the
 - After $\lambda$ is selected, just the power $\lambda$ is applied to the $y$, the other things are dropped.
 
 Most commonly $SS_{residual}(\lambda)$ is computed for some grid values and the best one selected:
+
 - $\lambda = 0$: log transform
 - $\lambda = 0.5$: square root transform
 - $\lambda = 1$: no transform
