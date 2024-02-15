@@ -1,4 +1,4 @@
-# Lecture 5: Model Selection
+# Lecture 6: Model Selection
 
 The job of model selection is to find the best model for a given dataset. This is done by comparing different models using a criterion that measures the "quality" of the model.
 
