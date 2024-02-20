@@ -59,22 +59,43 @@ This model starts at $\frac{a}{1+\beta}$ and approaches $a$ as $t$ increases.
 
 ## Newton Raphson Method
 
-Since the models are nonlinear, we can't use the normal equations to solve for the parameters. Instead we use the Newton-Raphson method to find the MLE.
+To find the estimator for $\beta$, we follow the same principles as in linear regression:
+* Maximizing $L(\beta, \sigma^2)$ (equal to minimizing $-L(\beta, \sigma^2)$)
 
-In particular we want to minimize the negative log-likelihood which is the error function:
+OR
+
+* Minimizing the sum of squares: $S(\beta) = \sum_{i=1}^{n} \left[ y_i - \mu(x_i, \beta) \right]^2$
+
+Since the models are nonlinear, we can't use the normal equations to solve for the parameters. 
+
+Instead we use the Newton-Raphson method to find the MLE, where the goal is to minimize a function $f(\beta)$, with
 
 $$
-f(\beta)=E(\beta) = -\sum_{i=1}^{n} \left[ y_i - \mu(x_i, \beta) \right]^2 \\
+f(\beta)=S(\beta) = -\sum_{i=1}^{n} \left[ y_i - \mu(x_i, \beta) \right]^2 \\
+$$
+
+OR
+
+$$
+f(\beta)=-log(L(\beta))
 $$
 
 The Newton-Raphson method is an iterative method to find the minimum of a function. It uses the **second derivative** of the function to find the minimum. Therefore it only works if the function is twice differentiable.
 
-The update step is given by:
+When using $S(\beta)$ the update step is given by:
 
 $$
 \beta^{(k+1)} = \beta^{(k)} - \left[ H(\beta^{(k)}) \right]^{-1} \nabla f(\beta^{(k)})
 $$
 
 Where $H(\beta^{(k)})$ is the Hessian matrix of the error function and $\nabla f(\beta^{(k)})$ is the gradient of the error function.
+
+For $-log(L(\beta))$ the update step is:
+
+$$
+\beta^{(k+1)} = \beta^{(k)} + [I(\beta^{(k)})]^{-1} DlogL(\beta^{(k)})
+$$
+
+Where the Hessian is replaced by the information matrix $I(\beta)=E[-D^2logL(\beta)]$
 
 This is repeated until convergence.
