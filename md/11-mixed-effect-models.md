@@ -44,14 +44,15 @@ $$
 The correllation is defined as:
 
 $$
-Cory_{ij}, y_{km}) = \frac{Cov(y_{ij}, y_{km})}{\sqrt{Var(y_{ij})Var(y_{km})}}
+Cor({ij}, y_{km}) = \frac{Cov(y_{ij}, y_{km})}{\sqrt{Var(y_{ij})Var(y_{km})}}
 $$
 
 In this model this turns out to be:
 
 $$
 \begin{aligned}
-Cory_{ij}, y_{km}) &= 0 \quad \text{for $i \neq k$ as people are independent} \\
-Cory_{ij}, y_{ik}) &= \frac{d}{d + \sigma_e^2} \quad \text{between measurements of the same person}\\
-Cory_{ij}, y_{ij}) &= 1 \quad \text{for the same measurement}
+Cor({ij}, y_{km}) &= 0 \quad \text{for $i \neq k$ as people are independent} \\
+Cor({ij}, y_{ik}) &= \frac{d}{d + \sigma_e^2} \quad \text{between measurements of the same person}\\
+Cor({ij}, y_{ij}) &= 1 \quad \text{for the same measurement}
 \end{aligned}
+$$

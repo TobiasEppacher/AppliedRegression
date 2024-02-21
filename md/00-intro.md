@@ -15,6 +15,7 @@ include-before: |
   ## About
 
   This repository contains the lecture notes for the course Applied Regression at the Technical University of Munich during the winter semester 2023/24.
+  It is an attempt of making the lecture notes more readable and accessible for students.
 
   You can download the merged file at [merge.pdf](https://github.com/TobiasEppacher/AppliedRegression/merge.pdf)
 

@@ -73,7 +73,7 @@ $$
 
 This is called `lag k autocorrelation` and measures the association between the residuals in the same time series.
 
-$r_0 = 1$ and $-1 \leq r_k \leq 1$ with $E[r_k] \approx 0$ and $Var(r_k) \approx 1/n$ for $k > 0.
+$r_0 = 1$ and $-1 \leq r_k \leq 1$ with $E[r_k] \approx 0$ and $Var(r_k) \approx 1/n$ for $k > 0$.
 
 When plotting the autocorrelation, the values $r_k$ for $k>0$ should stay within a band of $\pm 2/\sqrt{n}$. Values outside indicate autocorrelation.
 

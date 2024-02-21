@@ -34,6 +34,7 @@ In logistic regression, the outcomes $X_i \in \{0,1\}$ are assumed to be indepen
 $Y_i \sim Ber(\pi(x_i, \beta))$ where $\pi(x_i, \beta) = \frac{exp(x_i^T\beta)}{1+exp(x_i^T\beta)}$.
 
 The likelihood is defined as:
+
 $$
 \begin{aligned}
 L(\beta) &= \prod_{i=1}^n \pi(x_i, \beta)^{y_i}(1-\pi(x_i\beta))^{1-y_i} \\
@@ -93,7 +94,14 @@ $$D = -2log\left(\frac{L(\hat{\pi_1},\ldots,\hat{\pi_m})}{L(\hat{\beta})}\right)
 Where $\hat{\pi}$ is the mle of the saturated model and given by $\hat{\pi_k} = \frac{y_k}{n_k}$. Therefore, the deviance can be re-written as:
 $$D = 2\sum_{k=1}^m {y_klog\left[\frac{\hat{\pi_k}}{\pi(x_k,\hat(\beta))}\right] + (n_k-y_k)log\left[\frac{1-\hat(\beta_k)}{1-\pi(x_k,\hat(\beta))}\right]}$$
 
-$$\text{LRT} = 2[logL(full)-logL(restrict)] = 2[logL(saturated)-logL(restricted) - logL(saturated) + logL(full)] = D(restricted)-D(full)$$
+$$
+\begin{aligned}
+\text{LRT}
+    &= 2[logL(full)-logL(restrict)]\\
+    &= 2[logL(saturated)-logL(restricted) - logL(saturated) + logL(full)]  \\
+    &= D(restricted)-D(full)
+\end{aligned}
+$$
 
 In R, the residual deviance at the bottom of the output refers to the hypothesis $H_{full}$ vs $H_{saturated}$ which tests the goodness of fit of the specified model, including the intercept.
 The null deviance at the bottom of the output refers to the hypothesis $H_{intercept}$ vs $H_{saturated}$ which tests the intercept-only model. We can therefore run the restricted and full model to compute the LRT statistics in R.
