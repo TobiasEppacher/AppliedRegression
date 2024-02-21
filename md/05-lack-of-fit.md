@@ -55,11 +55,19 @@ Using the resulting value, arbitrary significance levels can be used to test the
 
 ## Variance Stabilizing Transformations
 
-- If the variance of the residuals increases with the mean, a natural logaritmic transformation can be used to stabilize the variance.
-- In general there are ways to transform the response data to stabilize the variance with regard to the mean.
-- Can be derived via first order Taylor series ($g(y) \approx g(\mu) + (y+\mu)g'(\mu)$)
+Typically the variance of the data tends to increase with the mean. This is bad for linear models since the residuals are assumed to be normally distributed with constant variance.
+
+Assume the error $\epsilon \sim N(0, [h(\mu)]^2 \sigma^2)$, where $h(\mu)$ is a function of the mean. The goal is to find a transformation $g(y)$ such that the variance of the transformed data is constant with respect to the mean. This can be achieved by using a function where $g'(\mu) = \frac{1}{h(\mu)}$.
+
+**Example:** $h(\mu) = \mu$ (variance increases with the mean)
+
+- $g(\mu) = \log(\mu)$
+- This means that the regression target $y$ should be transformed to $\log(y)$ before fitting the model. After the model is fitted, the predictions can be transformed back to the original scale using the inverse transformation $g^{-1}(y) = e^y$.
+- By using this transformation, the residuals will have constant variance with respect to the mean during the fitting process.
 
 ### Box-Cox Transformations
+
+The box-cox transformation is a family of power transformations. It tries to find the best power transformation $\lambda$ such that the variance of the transformed data is constant with respect to the mean.
 
 - Find $\lambda$ such that $y^{(\lambda)}_i = \frac{y_i^\lambda - 1}{\lambda \bar{y}^{\lambda - 1}_g}$ minimizes the residual sum of squares $SS_{residual}(\lambda)$.
 - $\bar{y}_g = [\prod_{i=1}^{n} y_i]^{1/n}$ is the geometric mean of $y$ for the sample used to fit the model.

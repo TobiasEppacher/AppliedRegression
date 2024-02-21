@@ -63,6 +63,8 @@ $$\frac{\partial^2 logL(\beta)}{\partial X^2} = \sum_{k=1}^m n_k\pi[x_k,\beta](1
 The variance of $\hat{\beta}$ is approximated by
 $$Var(\hat{\beta}) \approx \left(\frac{\partial^2 logL(\beta)}{\partial X^2}\right)^{-1}$$
 
+This comes from the taylor expansion of the log-likelihood around $\hat{\beta}$:
+
 For $j=1,\ldots,p$:
 
 - se($\hat{\beta}_j$) = $\sqrt{Var(\hat{\beta})_{jj}}$

@@ -137,10 +137,14 @@ $$
 
 where $H$ is called the hat matrix. $H$ it is a so called projection matrix, i.e. $H$ projects $y$ onto the linear subspace spanned by the columns of $X$.
 
+$\hat{y}$ is the vector of predicted values for the data points in $X$.
+
 All projection matrices have the following properties:
 
 + $H$ is symmetric
 + $H$ is idempotent, i.e. $H^2 = H$
+
+It is called the hat matrix because it puts a hat on $y$ to indicate that it is a prediction.
 
 ### Residuals
 

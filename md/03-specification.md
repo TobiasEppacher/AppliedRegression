@@ -27,7 +27,7 @@ where $x_{i1} = \begin{cases} 1 & \text{for } i = 1, \ldots, m \\ 0 & \text{for 
 
 In Matrix form the model is $y = X\beta + \epsilon$ where $X = \begin{bmatrix} 1 & 0 \\ \vdots & \vdots \\ 1 & 0 \\ 0 & 1 \\ \vdots & \vdots \\ 0 & 1 \end{bmatrix}$ and $\beta = \begin{bmatrix} \beta_1 \\ \beta_2 \end{bmatrix}$.
 
-When programmed in R, the model can be generated using `lm(y ~ x1 + x2 -1)`. The `-1` removes the intercept from the model since it is included by default. If the intercept is not removed, the program will crash since the lines are not linearly independent anymore (the sum of the two covariate columns equals the full 1 column of the intercept).
+When programmed in R, the model must be fitted using `lm(y ~ x1 + x2 -1)`. The `-1` removes the intercept from the model since it is included by default. If the intercept is not removed, the program will crash since the lines are not linearly independent anymore (the sum of the two covariate columns equals the full 1 column of the intercept).
 
 Alternatively, instead of removing the intercept, one can simply use one of the indicators for that purpose. For example, `lm(y ~ x2)` will use the intercept as value for the factor of the first covariate. Using `lm(y ~ factor(x))` will even take care of the coding of the covariates automatically.
 
@@ -79,6 +79,8 @@ Adittionally, multicollinearity can cause the model to be unstable. As the matri
 
 For many models, the design matrix $X$ can be made orthogonal. This means that the matrix $X$ is chosen such that all columns are orthogonal to each other.
 
-This has the advantage that all regression coefficients remain the same, even if the model is extended. This is because the columns of $X$ are linearly independent.
+This has the advantage that all regression coefficients remain the same, even if the model is fitted with only a subset of the covariates. Another consequence is that the $SS_{reg}$ of smaller models (with covariates ${A, B}$ and ${C, D}$) sum up to the $SS_{reg}$ of the larger model (with covariates ${A, B, C, D}$).
 
-Additionally it is very easy to compute the regression coefficients.
+Additionally it is very easy to compute the regression coefficients, as the matrix $X^TX$ is diagona which means that there is no correlation between the covariates. (And as a consequence, also no correlation between the components of $\hat{\beta}$.)
+
+$\beta = (X^TX)^{-1}X^Ty$ can be calculated quite easily then.

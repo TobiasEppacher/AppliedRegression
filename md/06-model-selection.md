@@ -114,7 +114,7 @@ while True:
     best_AIC, best_covariate = np.inf, None
 
     # go through all smaller models and select the one with the best criterion
-    for covariate in all_remaining_covariates:
+    for covariate in current_covariates:
         M_new = M - covariate
         AIC = fit_model(M_new)
 
@@ -156,21 +156,21 @@ while True:
         if AIC < best_AIC_forward:
             best_AIC_forward, best_covariate = AIC, covariate
 
+    # if the improvement is not big enough, stop
+    if |best_AIC_forward - current_AIC| < threshold:
+        break
+
     # if the best bigger model is better than the current model, add the covariate
     if best_AIC_forward < current_AIC:
         M = M + best_covariate
         current_AIC = best_AIC_forward
-
-    # if the improvement is not big enough, stop
-    if best_AIC_forward - current_AIC < threshold:
-        break
 
     ### Backward step
 
     best_AIC_backward, best_covariate = np.inf, None
 
     # go through all smaller models and select the one with the best criterion
-    for covariate in all_remaining_covariates:
+    for covariate in current_covariates:
         M_new = M - covariate
         AIC = fit_model(M_new)
 
@@ -178,15 +178,13 @@ while True:
             best_AIC_backward, best_covariate = AIC, covariate
 
     # if the improvement is not big enough, stop
-    if best_AIC_backward - current_AIC < threshold:
+    if |best_AIC_backward - current_AIC| < threshold:
         break
 
     # if the best smaller model is better than the current model, remove the covariate
     if best_AIC_backward < current_AIC:
         M = M - best_covariate
         current_AIC = best_AIC_backward
-    else:
-        break
 ```
 
 Aslong as the improvement is big enough, the algorithm will continue to add and remove covariates. Covariates can enter and leave the model multiple times.

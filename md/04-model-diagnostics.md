@@ -71,7 +71,7 @@ $$
     r_k = \frac{\sum_{t=k+1}^{n} e_te_{t-k}}{\sum_{t=1}^{n} e_t^2}, \quad k = 1, 2, \ldots
 $$
 
-This is called 'lag k autocorrelation' and measures the association between the residuals in the same time series.
+This is called `lag k autocorrelation` and measures the association between the residuals in the same time series.
 
 $r_0 = 1$ and $-1 \leq r_k \leq 1$ with $E[r_k] \approx 0$ and $Var(r_k) \approx 1/n$ for $k > 0.
 
@@ -96,14 +96,19 @@ Outliers can have a strong influence on the model and should be analysed careful
 The fitted values $\hat{y}_i$ are weighted averages of its own response and the responses of the other observations.
 
 $$
-    \hat{y}_i = h_{ii} + \sum_{j \neq i} h_{ij}y_j
+\hat{y}_i = h_{ii} y_i+ \sum_{j \neq i} h_{ij}y_j \qquad \text{since} (\hat{y} = Hy)
 $$
 
-Since $Var(e_i) = \sigma^2(1-h_{ii}), \quad h_{ii} \leq 1$ becomes nearly $0$ if $h_{ii}$ is close to 1, such cases have high impact on the fitted line.
+Where $h_{ij}$ are the elements of the hat matrix $H = X(X'X)^{-1}X'$.
+
+Since $Var(e_i) = \sigma^2(1-h_{ii})$, the variance of the residuals
+becomes nearly $0$ if $h_{ii}$ is close to 1, such cases have high impact on the fitted line since $e_i=y_i-\hat{y}_i \approx 0$. This is called high leverage since the observation extremely pulls the fitted line towards itself.
+
+### Properties of Leverage
 
 $h_{ii}$ is called the leverage of the $i$-th observation.
 
-- Leverage does not depend on the response $y_i$.
+- Leverage does not depend on the response $y_i$. It only depends on the covariates $x_i$.
 - $\frac{1}{n} \leq h_{ii} \leq 1$
 - Leverage is higher for $x$ values far from the mean $\bar{x}$.
 - $\sum_{i=1}^{n} h_{ii} = tr[H] = k+1$

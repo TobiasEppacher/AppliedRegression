@@ -78,3 +78,32 @@ $$
 Where $H(\beta^{(k)})$ is the Hessian matrix of the error function and $\nabla f(\beta^{(k)})$ is the gradient of the error function.
 
 This is repeated until convergence.
+
+### Good starting values
+
+The Newton-Raphson method is sensitive to the starting values. Therefore it is important to have good starting values close to the actual parameters.
+
+One can use a few datapoints to `reverse engineer` what the parameters should approximately be. Then use these as starting values for the Newton-Raphson method. This boils down to solving a system of equations.
+
+**Example:** Exponential Model
+
++ Let the data be $(x_1, y_1), (x_2, y_2), ...$
++ Then we have the following equations:
+
+$$
+\begin{aligned}
+    y_1 &= \beta e^{\gamma x_1} \\
+    y_2 &= \beta e^{\gamma x_2} \\
+\end{aligned}
+$$
+
+We can solve for $\beta$ and $\gamma$ using these equations. This yields to:
+
+$$
+\begin{aligned}
+    y_1 &= \frac{y_2}{e^{\gamma x_2}} e^{\gamma x_1} \\
+        &= y_2 e^{\gamma (x_1 - x_2)} \\
+        \implies \tilde\gamma &= \frac{log(y_1) - log(y_2)}{x_1 - x_2} \\
+        \implies \tilde\beta &= \frac{y_1}{e^{\gamma x_1}}
+\end{aligned}
+$$

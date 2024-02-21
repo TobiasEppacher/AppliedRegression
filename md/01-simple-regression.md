@@ -263,6 +263,12 @@ $$
 r = sgn(\hat{\beta_1}) \sqrt{R^2} = \frac{S_{xy}}{\sqrt{S_{xx} S_{yy}}}
 $$
 
+Since $cov(x,y) = \frac{S_{xy}}{n-1}$ and $var(x) = \frac{S_{xx}}{n-1}$ we can also write:
+
+$$
+r = \frac{cov(x,y)}{\sqrt{var(x) var(y)}}
+$$
+
 The value $r$ is between -1 and 1. It is 1 if the two variables are perfectly positive correlated, -1 if they are perfectly negative correlated and 0 if they are not correlated at all.
 
 The formula is symmetric, meaning that $r(x,y) = r(y,x)$, so it does not matter which variable is the covariate and which is the outcome.
