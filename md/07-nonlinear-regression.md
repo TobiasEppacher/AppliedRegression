@@ -60,13 +60,14 @@ This model starts at $\frac{a}{1+\beta}$ and approaches $a$ as $t$ increases.
 ## Newton Raphson Method
 
 To find the estimator for $\beta$, we follow the same principles as in linear regression:
+
 * Maximizing $L(\beta, \sigma^2)$ (equal to minimizing $-L(\beta, \sigma^2)$)
 
 OR
 
 * Minimizing the sum of squares: $S(\beta) = \sum_{i=1}^{n} \left[ y_i - \mu(x_i, \beta) \right]^2$
 
-Since the models are nonlinear, we can't use the normal equations to solve for the parameters. 
+Since the models are nonlinear, we can't use the normal equations to solve for the parameters.
 
 Instead we use the Newton-Raphson method to find the MLE, where the goal is to minimize a function $f(\beta)$, with
 
@@ -108,8 +109,8 @@ One can use a few datapoints to `reverse engineer` what the parameters should ap
 
 **Example:** Exponential Model
 
-+ Let the data be $(x_1, y_1), (x_2, y_2), ...$
-+ Then we have the following equations:
+* Let the data be $(x_1, y_1), (x_2, y_2), ...$
+* Then we have the following equations:
 
 $$
 \begin{aligned}
